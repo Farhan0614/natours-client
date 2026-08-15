@@ -1,0 +1,10 @@
+@import "tailwindcss"; /* Used in Tailwind v4.0+ */
+
+/* Alternatively, in older Tailwind v3 versions, you will see: */
+/* @tailwind base; */
+/* @tailwind components; */
+/* @tailwind utilities; */
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
