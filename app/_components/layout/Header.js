@@ -2,6 +2,9 @@ import Image from "next/image";
 import Link from "next/link";
 
 export default function Header() {
+  // TEMPORARY: Set to null to simulate logged out, or an object to simulate logged in.
+  const user = null;
+
   return (
     <header className="bg-slate-800 px-8 py-5 flex flex-col md:flex-row justify-between items-center gap-6 shadow-md z-50">
       <nav className="flex items-center gap-6 text-slate-100 text-sm font-semibold uppercase tracking-wider">
@@ -33,25 +36,41 @@ export default function Header() {
       </div>
 
       <nav className="flex items-center gap-6 text-slate-100 text-sm font-semibold uppercase tracking-wider">
-        <Link
-          href="/bookings"
-          className="hover:text-emerald-400 transition-colors"
-        >
-          My bookings
-        </Link>
-        <Link
-          href="/profile"
-          className="flex items-center gap-3 hover:text-emerald-400 transition-colors"
-        >
-          <Image
-            src="/img/users/default.jpg"
-            alt="User photo"
-            className="rounded-full object-cover border-2 border-slate-600"
-            width={35}
-            height={35}
-          />
-          <span>Jonas</span>
-        </Link>
+        {user ? (
+          <>
+            <button className="hover:text-emerald-400 transition-colors">
+              Log out
+            </button>
+            <Link
+              href="/me"
+              className="flex items-center gap-3 hover:text-emerald-400 transition-colors"
+            >
+              <Image
+                src={`/img/users/${user.photo}`}
+                alt={`Photo of ${user.name}`}
+                className="rounded-full object-cover border-2 border-slate-600"
+                width={35}
+                height={35}
+              />
+              <span>{user.name.split(" ")[0]}</span>
+            </Link>
+          </>
+        ) : (
+          <>
+            <Link
+              href="/login"
+              className="hover:text-emerald-400 transition-colors"
+            >
+              Log in
+            </Link>
+            <Link
+              href="/signup"
+              className="bg-emerald-500 text-white px-6 py-2.5 rounded-full hover:bg-emerald-600 hover:-translate-y-0.5 transition-all shadow-md"
+            >
+              Sign up
+            </Link>
+          </>
+        )}
       </nav>
     </header>
   );
