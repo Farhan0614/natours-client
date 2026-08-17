@@ -54,6 +54,45 @@ export default function Header() {
               />
               <span>{user.name.split(" ")[0]}</span>
             </Link>
+            <Link
+              href="/me"
+              className="flex items-center gap-3 hover:text-emerald-400 transition-colors"
+            >
+              <Image
+                src={`/img/users/${user.photo}`}
+                alt={`Photo of ${user.name}`}
+                className="rounded-full object-cover border-2 border-slate-600"
+                width={35}
+                height={35}
+              />
+              <span>{user.name.split(" ")[0]}</span>
+            </Link>
+            <Link
+              href="/me"
+              className="flex items-center gap-3 hover:text-emerald-400 transition-colors"
+            >
+              <Image
+                src={`/img/users/${user.photo}`}
+                alt={`Photo of ${user.name}`}
+                className="rounded-full object-cover border-2 border-slate-600"
+                width={35}
+                height={35}
+              />
+              <span>{user.name.split(" ")[0]}</span>
+            </Link>
+            <Link
+              href="/me"
+              className="flex items-center gap-3 hover:text-emerald-400 transition-colors"
+            >
+              <Image
+                src={`/img/users/${user.photo}`}
+                alt={`Photo of ${user.name}`}
+                className="rounded-full object-cover border-2 border-slate-600"
+                width={35}
+                height={35}
+              />
+              <span>{user.name.split(" ")[0]}</span>
+            </Link>
           </>
         ) : (
           <>

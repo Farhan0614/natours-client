@@ -18,30 +18,6 @@ export default function TourCard({ tour }) {
             sizes="(max-width: 768px) 100vw, 33vw"
           />
         </div>
-        <div className="relative h-64 [clip-path:polygon(0_0,100%_0,100%_83%,0_100%)]">
-          {/* Green Gradient Overlay */}
-          <div className="absolute inset-0 bg-gradient-to-br from-emerald-400 to-emerald-600 opacity-60 z-10 mix-blend-multiply"></div>
-          <Image
-            src={`/img/tours/${tour.imageCover}`}
-            alt={tour.name}
-            fill={true}
-            style={{ objectFit: "cover" }}
-            className="z-0"
-            sizes="(max-width: 768px) 100vw, 33vw"
-          />
-        </div>
-        <div className="relative h-64 [clip-path:polygon(0_0,100%_0,100%_83%,0_100%)]">
-          {/* Green Gradient Overlay */}
-          <div className="absolute inset-0 bg-gradient-to-br from-emerald-400 to-emerald-600 opacity-60 z-10 mix-blend-multiply"></div>
-          <Image
-            src={`/img/tours/${tour.imageCover}`}
-            alt={tour.name}
-            fill={true}
-            style={{ objectFit: "cover" }}
-            className="z-0"
-            sizes="(max-width: 768px) 100vw, 33vw"
-          />
-        </div>
 
         {/* Title */}
         <h3 className="absolute bottom-4 right-4 text-white text-3xl font-light uppercase text-right w-2/3 z-20">
