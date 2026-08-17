@@ -41,6 +41,168 @@ export default function Footer() {
           </Link>
         </li>
       </ul>
+      <ul className="flex flex-wrap justify-center gap-x-6 gap-y-3 text-sm text-slate-500 font-semibold transition-colors">
+        <li>
+          <Link href="#" className="hover:text-emerald-500">
+            About us
+          </Link>
+        </li>
+        <li>
+          <Link href="#" className="hover:text-emerald-500">
+            Download apps
+          </Link>
+        </li>
+        <li>
+          <Link href="#" className="hover:text-emerald-500">
+            Become a guide
+          </Link>
+        </li>
+        <li>
+          <Link href="#" className="hover:text-emerald-500">
+            Careers
+          </Link>
+        </li>
+        <li>
+          <Link href="#" className="hover:text-emerald-500">
+            Contact
+          </Link>
+        </li>
+      </ul>
+      <ul className="flex flex-wrap justify-center gap-x-6 gap-y-3 text-sm text-slate-500 font-semibold transition-colors">
+        <li>
+          <Link href="#" className="hover:text-emerald-500">
+            About us
+          </Link>
+        </li>
+        <li>
+          <Link href="#" className="hover:text-emerald-500">
+            Download apps
+          </Link>
+        </li>
+        <li>
+          <Link href="#" className="hover:text-emerald-500">
+            Become a guide
+          </Link>
+        </li>
+        <li>
+          <Link href="#" className="hover:text-emerald-500">
+            Careers
+          </Link>
+        </li>
+        <li>
+          <Link href="#" className="hover:text-emerald-500">
+            Contact
+          </Link>
+        </li>
+      </ul>
+      <ul className="flex flex-wrap justify-center gap-x-6 gap-y-3 text-sm text-slate-500 font-semibold transition-colors">
+        <li>
+          <Link href="#" className="hover:text-emerald-500">
+            About us
+          </Link>
+        </li>
+        <li>
+          <Link href="#" className="hover:text-emerald-500">
+            Download apps
+          </Link>
+        </li>
+        <li>
+          <Link href="#" className="hover:text-emerald-500">
+            Become a guide
+          </Link>
+        </li>
+        <li>
+          <Link href="#" className="hover:text-emerald-500">
+            Careers
+          </Link>
+        </li>
+        <li>
+          <Link href="#" className="hover:text-emerald-500">
+            Contact
+          </Link>
+        </li>
+      </ul>
+      <ul className="flex flex-wrap justify-center gap-x-6 gap-y-3 text-sm text-slate-500 font-semibold transition-colors">
+        <li>
+          <Link href="#" className="hover:text-emerald-500">
+            About us
+          </Link>
+        </li>
+        <li>
+          <Link href="#" className="hover:text-emerald-500">
+            Download apps
+          </Link>
+        </li>
+        <li>
+          <Link href="#" className="hover:text-emerald-500">
+            Become a guide
+          </Link>
+        </li>
+        <li>
+          <Link href="#" className="hover:text-emerald-500">
+            Careers
+          </Link>
+        </li>
+        <li>
+          <Link href="#" className="hover:text-emerald-500">
+            Contact
+          </Link>
+        </li>
+      </ul>
+      <ul className="flex flex-wrap justify-center gap-x-6 gap-y-3 text-sm text-slate-500 font-semibold transition-colors">
+        <li>
+          <Link href="#" className="hover:text-emerald-500">
+            About us
+          </Link>
+        </li>
+        <li>
+          <Link href="#" className="hover:text-emerald-500">
+            Download apps
+          </Link>
+        </li>
+        <li>
+          <Link href="#" className="hover:text-emerald-500">
+            Become a guide
+          </Link>
+        </li>
+        <li>
+          <Link href="#" className="hover:text-emerald-500">
+            Careers
+          </Link>
+        </li>
+        <li>
+          <Link href="#" className="hover:text-emerald-500">
+            Contact
+          </Link>
+        </li>
+      </ul>
+      <ul className="flex flex-wrap justify-center gap-x-6 gap-y-3 text-sm text-slate-500 font-semibold transition-colors">
+        <li>
+          <Link href="#" className="hover:text-emerald-500">
+            About us
+          </Link>
+        </li>
+        <li>
+          <Link href="#" className="hover:text-emerald-500">
+            Download apps
+          </Link>
+        </li>
+        <li>
+          <Link href="#" className="hover:text-emerald-500">
+            Become a guide
+          </Link>
+        </li>
+        <li>
+          <Link href="#" className="hover:text-emerald-500">
+            Careers
+          </Link>
+        </li>
+        <li>
+          <Link href="#" className="hover:text-emerald-500">
+            Contact
+          </Link>
+        </li>
+      </ul>
 
       <p className="text-sm text-slate-400 text-center md:text-right">
         &copy; by Jonas Schmedtmann. All rights reserved.
