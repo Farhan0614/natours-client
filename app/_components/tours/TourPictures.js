@@ -12,6 +12,7 @@ export default function TourPictures({ images, tourName }) {
             fill
             className="object-cover"
             sizes="(max-width: 768px) 100vw, 33vw"
+            priority={i === 0}
           />
         </div>
       ))}
