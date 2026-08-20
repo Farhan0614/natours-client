@@ -14,7 +14,7 @@ export default function Header() {
         <form className="flex items-center bg-slate-700 rounded-full px-4 py-2 border border-slate-600 focus-within:border-emerald-400 transition-colors">
           <button className="flex items-center justify-center">
             <svg className="w-4 h-4 fill-slate-300">
-              <use xlinkHref="img/icons.svg#icon-search"></use>
+              <use xlinkHref="/img/icons.svg#icon-search"></use>
             </svg>
           </button>
           <input
