@@ -8,7 +8,7 @@ export default function TourCard({ tour }) {
       <div className="relative">
         <div className="relative h-64 [clip-path:polygon(0_0,100%_0,100%_83%,0_100%)]">
           {/* Green Gradient Overlay */}
-          <div className="absolute inset-0 bg-gradient-to-br from-emerald-400 to-emerald-600 opacity-60 z-10 mix-blend-multiply"></div>
+          <div className="absolute inset-0 bg-linear-to-br from-emerald-400 to-emerald-600 opacity-60 z-10 mix-blend-multiply"></div>
           <Image
             src={`/img/tours/${tour.imageCover}`}
             alt={tour.name}
@@ -21,7 +21,7 @@ export default function TourCard({ tour }) {
 
         {/* Title */}
         <h3 className="absolute bottom-4 right-4 text-white text-3xl font-light uppercase text-right w-2/3 z-20">
-          <span className="bg-gradient-to-br from-emerald-400/80 to-emerald-600/80 px-4 py-1 box-decoration-clone leading-snug">
+          <span className="bg-linear-to-br from-emerald-400/80 to-emerald-600/80 px-4 py-1 box-decoration-clone leading-snug">
             {tour.name}
           </span>
         </h3>

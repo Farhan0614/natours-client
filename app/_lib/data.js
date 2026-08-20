@@ -18,16 +18,15 @@ export async function getTours() {
 
 // 2. Fetch a single tour by slug
 export async function getTour(slug) {
-  const res = await fetch(`${API_URL}/tours?slug=${slug}`, {
+  // 1. Hit the new specific endpoint you just created
+  const res = await fetch(`${API_URL}/tours/slug/${slug}`, {
     cache: "no-store",
   });
 
-  if (!res.ok) {
-    throw new Error("Failed to fetch tour");
-  }
+  if (!res.ok) throw new Error("Failed to fetch tour");
 
   const fetchedData = await res.json();
-  const tourArray = fetchedData.data.data || fetchedData.data.tours;
 
-  return tourArray[0]; // Return just the single tour object
+  // 2. Return the single tour object directly
+  return fetchedData.data.tour;
 }
