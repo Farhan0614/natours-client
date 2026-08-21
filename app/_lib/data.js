@@ -1,4 +1,4 @@
-// src/app/_lib/data.js
+import { cookies } from "next/headers";
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
@@ -29,4 +29,30 @@ export async function getTour(slug) {
 
   // 2. Return the single tour object directly
   return fetchedData.data.tour;
+}
+
+export async function getMe() {
+  const cookieStore = await cookies();
+  const jwtCookie = cookieStore.get("jwt");
+
+  if (!jwtCookie) return null;
+  try {
+    const res = await fetch(`${API_URL}/users/me`, {
+      cache: "no-store",
+      headers: {
+        // We MUST manually attach the cookie from the browser to this outgoing server request
+        Cookie: `jwt=${jwtCookie.value}`,
+      },
+    });
+
+    if (!res.ok) {
+      return null;
+    }
+
+    const user = await res.json();
+    return user.data.data;
+  } catch (error) {
+    console.error("Failed to fetch user profile", error);
+    return null;
+  }
 }

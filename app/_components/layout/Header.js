@@ -1,9 +1,10 @@
+import { getMe } from "@/app/_lib/data";
 import Image from "next/image";
 import Link from "next/link";
 
-export default function Header() {
+export default async function Header() {
   // TEMPORARY: Set to null to simulate logged out, or an object to simulate logged in.
-  const user = null;
+  const user = await getMe();
 
   return (
     <header className="bg-slate-800 px-8 py-5 flex flex-col md:flex-row justify-between items-center gap-6 shadow-md z-50">
@@ -38,6 +39,7 @@ export default function Header() {
       <nav className="flex items-center gap-6 text-slate-100 text-sm font-semibold uppercase tracking-wider">
         {user ? (
           <>
+            {/* We will wire up Logout in the next step */}
             <button className="hover:text-emerald-400 transition-colors">
               Log out
             </button>
@@ -46,13 +48,14 @@ export default function Header() {
               className="flex items-center gap-3 hover:text-emerald-400 transition-colors"
             >
               <Image
-                src={`/img/users/${user.photo}`}
+                src={`/img/users/${user.photo || "default.jpg"}`} // Fallback to default if no photo
                 alt={`Photo of ${user.name}`}
-                className="rounded-full object-cover border-2 border-slate-600"
+                className="rounded-full object-cover border-2 border-slate-600 h-[35px] w-[35px]"
                 width={35}
                 height={35}
               />
-              <span>{user.name.split(" ")[0]}</span>
+              {/* Added fallback to prevent crash if name is missing */}
+              <span>{user.name ? user.name.split(" ")[0] : "User"}</span>
             </Link>
           </>
         ) : (

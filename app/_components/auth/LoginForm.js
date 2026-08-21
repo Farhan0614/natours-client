@@ -34,7 +34,7 @@ export default function LoginForm() {
       );
 
       const data = await res.json();
-      console.log(res, data);
+      console.log(data);
 
       // 2. Handle backend errors (e.g., wrong password)
       if (!res.ok) {
