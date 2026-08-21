@@ -10,28 +10,18 @@ import TourMap from "../../_components/tours/TourMap";
 
 export async function generateMetadata({ params }) {
   const { slug } = await params;
-
-  const tour = await getTour(slug);
-
-  if (!tour) {
-    return {
-      title: "Tour Not Found | Natours",
-    };
+  try {
+    const tour = await getTour(slug);
+    if (!tour) return { title: "Natours | Tour Not Found" };
+    return { title: `Natours | ${tour.name} Tour`, description: tour.summary };
+  } catch (error) {
+    return { title: "Natours | Tour Not Found" };
   }
-
-  return {
-    title: `Natours | ${tour.name} Tour `,
-    // You can also add dynamic SEO descriptions here!
-    description: tour.summary,
-  };
 }
 
 export default async function TourDetailPage({ params }) {
   const { slug } = await params;
   const tour = await getTour(slug);
-
-  if (!tour)
-    return <div className="text-center py-20 text-2xl">Tour not found!</div>;
 
   const date = new Date(tour.startDates[0]).toLocaleString("en-us", {
     month: "long",

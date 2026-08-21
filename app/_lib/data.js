@@ -1,4 +1,5 @@
 import { cookies } from "next/headers";
+import { notFound } from "next/navigation";
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
@@ -18,16 +19,24 @@ export async function getTours() {
 
 // 2. Fetch a single tour by slug
 export async function getTour(slug) {
-  // 1. Hit the new specific endpoint you just created
   const res = await fetch(`${API_URL}/tours/slug/${slug}`, {
     cache: "no-store",
   });
+  if (!res.ok) {
+    const errorData = await res.json();
+    // 2. If Express sends a 404 (e.g., "There is no tour with that name.")
+    // Instantly trigger the Next.js not-found page. No need to throw an Error!
+    if (res.status === 404) {
+      notFound();
+    }
 
-  if (!res.ok) throw new Error("Failed to fetch tour");
+    // 3. For all other errors (500s, DB crashes), throw to the global error.js
+    throw new Error(
+      errorData.message || "Something went wrong fetching the tour",
+    );
+  }
 
   const fetchedData = await res.json();
-
-  // 2. Return the single tour object directly
   return fetchedData.data.tour;
 }
 
