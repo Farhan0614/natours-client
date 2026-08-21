@@ -1,6 +1,7 @@
 import { getMe } from "@/app/_lib/data";
 import Image from "next/image";
 import Link from "next/link";
+import LogoutButton from "../auth/LogoutButton";
 
 export default async function Header() {
   // TEMPORARY: Set to null to simulate logged out, or an object to simulate logged in.
@@ -39,10 +40,7 @@ export default async function Header() {
       <nav className="flex items-center gap-6 text-slate-100 text-sm font-semibold uppercase tracking-wider">
         {user ? (
           <>
-            {/* We will wire up Logout in the next step */}
-            <button className="hover:text-emerald-400 transition-colors">
-              Log out
-            </button>
+            <LogoutButton />
             <Link
               href="/me"
               className="flex items-center gap-3 hover:text-emerald-400 transition-colors"
