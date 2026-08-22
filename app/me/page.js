@@ -3,6 +3,8 @@ import { getMe } from "../_lib/data";
 import { redirect } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
+import UpdateUserDataForm from "../_components/auth/UpdateUserDataForm";
+import UpdatePasswordForm from "../_components/auth/UpdatePasswordForm";
 
 // Helper component for the sidebar navigation links
 function NavItem({ link, text, icon, active }) {
@@ -96,62 +98,12 @@ export default async function ProfilePage() {
 
         {/* MAIN CONTENT AREA */}
         <section className="flex-1 p-10 md:p-16">
-          {/* USER DATA FORM (UI Only for now) */}
           <div className="max-w-2xl mx-auto mb-16">
             <h2 className="text-3xl font-bold uppercase text-slate-800 mb-8 bg-clip-text text-transparent bg-gradient-to-r from-emerald-400 to-emerald-600">
               Your account settings
             </h2>
 
-            <form className="flex flex-col gap-6">
-              <div className="flex flex-col gap-2">
-                <label className="font-bold text-slate-700" htmlFor="name">
-                  Name
-                </label>
-                <input
-                  id="name"
-                  type="text"
-                  defaultValue={user.name} // Using defaultValue since it's a Server Component
-                  required
-                  className="px-4 py-3 bg-slate-50 text-slate-800 rounded-lg border border-slate-200 focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 w-full"
-                />
-              </div>
-
-              <div className="flex flex-col gap-2">
-                <label className="font-bold text-slate-700" htmlFor="email">
-                  Email address
-                </label>
-                <input
-                  id="email"
-                  type="email"
-                  defaultValue={user.email}
-                  required
-                  className="px-4 py-3 bg-slate-50 text-slate-800 rounded-lg border border-slate-200 focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 w-full"
-                />
-              </div>
-
-              <div className="flex items-center gap-6 mt-2">
-                <Image
-                  src={`/img/users/${user.photo || "default.jpg"}`}
-                  alt="User photo"
-                  width={75}
-                  height={75}
-                  className="rounded-full h-[75px] w-[75px] object-cover border-2 border-slate-200"
-                />
-                <button
-                  type="button"
-                  className="text-emerald-500 font-semibold border-b border-emerald-500 pb-0.5 hover:text-emerald-600 transition-colors"
-                >
-                  Choose new photo
-                </button>
-              </div>
-
-              <button
-                type="button"
-                className="bg-emerald-500 text-white uppercase px-8 py-3 rounded-full font-semibold tracking-wider hover:bg-emerald-600 transition-all self-end mt-4"
-              >
-                Save settings
-              </button>
-            </form>
+            <UpdateUserDataForm user={user} />
           </div>
 
           <hr className="border-slate-200 mb-16" />
@@ -162,62 +114,7 @@ export default async function ProfilePage() {
               Password change
             </h2>
 
-            <form className="flex flex-col gap-6">
-              <div className="flex flex-col gap-2">
-                <label
-                  className="font-bold text-slate-700"
-                  htmlFor="password-current"
-                >
-                  Current password
-                </label>
-                <input
-                  id="password-current"
-                  type="password"
-                  placeholder="••••••••"
-                  required
-                  minLength="8"
-                  className="px-4 py-3 bg-slate-50 text-slate-800 rounded-lg border border-slate-200 focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 w-full"
-                />
-              </div>
-
-              <div className="flex flex-col gap-2">
-                <label className="font-bold text-slate-700" htmlFor="password">
-                  New password
-                </label>
-                <input
-                  id="password"
-                  type="password"
-                  placeholder="••••••••"
-                  required
-                  minLength="8"
-                  className="px-4 py-3 bg-slate-50 text-slate-800 rounded-lg border border-slate-200 focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 w-full"
-                />
-              </div>
-
-              <div className="flex flex-col gap-2">
-                <label
-                  className="font-bold text-slate-700"
-                  htmlFor="password-confirm"
-                >
-                  Confirm password
-                </label>
-                <input
-                  id="password-confirm"
-                  type="password"
-                  placeholder="••••••••"
-                  required
-                  minLength="8"
-                  className="px-4 py-3 bg-slate-50 text-slate-800 rounded-lg border border-slate-200 focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 w-full"
-                />
-              </div>
-
-              <button
-                type="button"
-                className="bg-emerald-500 text-white uppercase px-8 py-3 rounded-full font-semibold tracking-wider hover:bg-emerald-600 transition-all self-end mt-4"
-              >
-                Save password
-              </button>
-            </form>
+            <UpdatePasswordForm />
           </div>
         </section>
       </div>
