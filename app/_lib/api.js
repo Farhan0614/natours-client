@@ -1,18 +1,26 @@
-export const updateSettings = async (data, type) => {
+export const updateSettings = async (data, type, isFormData = false) => {
   const url =
     type === "password"
       ? `${process.env.NEXT_PUBLIC_API_URL}/users/updateMyPassword`
       : `${process.env.NEXT_PUBLIC_API_URL}/users/updateMe`;
 
-  const res = await fetch(url, {
+  // 2. Determine how to configure the fetch request
+  const fetchOptions = {
     method: "PATCH",
-    headers: {
-      "Content-Type": "application/json",
-    },
     credentials: "include", // CRITICAL: Send the JWT cookie!
-    body: JSON.stringify(data),
-  });
+  };
 
+  if (isFormData) {
+    // If it's a file upload, just pass the FormData object directly.
+    // DO NOT set 'Content-Type'. The browser sets it automatically with the multipart boundary!
+    fetchOptions.body = data;
+  } else {
+    // If it's normal text, use JSON
+    fetchOptions.headers = { "Content-Type": "application/json" };
+    fetchOptions.body = JSON.stringify(data);
+  }
+
+  const res = await fetch(url, fetchOptions);
   const result = await res.json();
 
   if (!res.ok) {

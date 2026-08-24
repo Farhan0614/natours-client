@@ -3,6 +3,12 @@ import Image from "next/image";
 import Link from "next/link";
 import LogoutButton from "../auth/LogoutButton";
 
+const getProfileImageUrl = (photoName) => {
+  if (photoName === "default.jpg") return "/img/users/default.jpg";
+  const EXPRESS_ROOT = process.env.NEXT_PUBLIC_API_URL.replace("/api/v1", "");
+  return `${EXPRESS_ROOT}/img/users/${photoName}`;
+};
+
 export default async function Header() {
   // TEMPORARY: Set to null to simulate logged out, or an object to simulate logged in.
   const user = await getMe();
@@ -46,11 +52,12 @@ export default async function Header() {
               className="flex items-center gap-3 hover:text-emerald-400 transition-colors"
             >
               <Image
-                src={`/img/users/${user.photo || "default.jpg"}`} // Fallback to default if no photo
+                src={getProfileImageUrl(user.photo)}
                 alt={`Photo of ${user.name}`}
                 className="rounded-full object-cover border-2 border-slate-600 h-[35px] w-[35px]"
                 width={35}
                 height={35}
+                unoptimized // <-- Don't forget to add this here too!
               />
               {/* Added fallback to prevent crash if name is missing */}
               <span>{user.name ? user.name.split(" ")[0] : "User"}</span>
