@@ -4,18 +4,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { updateSettings } from "@/app/_lib/api";
-
-// Helper function to build the correct image URL
-const getProfileImageUrl = (photoName) => {
-  // If the photo is still the local default.jpg, use Next.js public folder
-  if (photoName === "default.jpg") return "/img/users/default.jpg";
-
-  // Otherwise, point to the Express backend (e.g., http://127.0.0.1:8000)
-  // Because app.use(express.static('public')) is active, the URL just needs /img/users/...
-  // We use the root URL, not the /api/v1 URL
-  const EXPRESS_ROOT = process.env.NEXT_PUBLIC_API_URL.replace("/api/v1", "");
-  return `${EXPRESS_ROOT}/img/users/${photoName}`;
-};
+import { getUserImageUrl } from "@/app/_util/getBackendImages";
 
 export default function UpdateUserDataForm({ user }) {
   const router = useRouter();
@@ -25,9 +14,7 @@ export default function UpdateUserDataForm({ user }) {
   const [email, setEmail] = useState(user.email);
   const [photoFile, setPhotoFile] = useState(null);
   // New state for a temporary preview URL
-  const [photoPreview, setPhotoPreview] = useState(
-    getProfileImageUrl(user.photo),
-  );
+  const [photoPreview, setPhotoPreview] = useState(getUserImageUrl(user.photo));
 
   // 2. UI States
   const [isLoading, setIsLoading] = useState(false);

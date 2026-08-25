@@ -1,4 +1,5 @@
 // src/app/_components/tours/TourDescription.js
+import { getUserImageUrl } from "@/app/_util/getBackendImages";
 import Image from "next/image";
 
 export default function TourDescription({ tour, date }) {
@@ -53,11 +54,12 @@ export default function TourDescription({ tour, date }) {
               {tour.guides.map((guide) => (
                 <div key={guide._id} className="flex items-center gap-4">
                   <Image
-                    src={`/img/users/${guide.photo}`}
+                    src={getUserImageUrl(guide.photo)}
                     alt={guide.name}
                     width={40}
                     height={40}
                     className="rounded-full"
+                    unoptimized
                   />
                   <span className="font-bold uppercase w-32">
                     {guide.role === "lead-guide" ? "Lead guide" : "Tour guide"}

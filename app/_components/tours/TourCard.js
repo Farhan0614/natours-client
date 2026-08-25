@@ -1,3 +1,4 @@
+import { getTourImageUrl } from "@/app/_util/getBackendImages";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -10,12 +11,13 @@ export default function TourCard({ tour }) {
           {/* Green Gradient Overlay */}
           <div className="absolute inset-0 bg-linear-to-br from-emerald-400 to-emerald-600 opacity-60 z-10 mix-blend-multiply"></div>
           <Image
-            src={`/img/tours/${tour.imageCover}`}
+            src={getTourImageUrl(tour.imageCover)}
             alt={tour.name}
             fill={true}
             style={{ objectFit: "cover" }}
             className="z-0"
             sizes="(max-width: 768px) 100vw, 33vw"
+            unoptimized
           />
         </div>
 

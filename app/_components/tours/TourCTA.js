@@ -1,4 +1,5 @@
 // src/app/_components/tours/TourCTA.js
+import { getTourImageUrl } from "@/app/_util/getBackendImages";
 import Image from "next/image";
 
 export default function TourCTA({ tour }) {
@@ -8,20 +9,22 @@ export default function TourCTA({ tour }) {
         <div className="flex items-center justify-center gap-4 relative z-10 hidden md:flex">
           <div className="w-32 h-32 rounded-full overflow-hidden relative shadow-lg z-20 border-4 border-white">
             <Image
-              src={`/img/tours/${tour.images[1]}`}
+              src={getTourImageUrl(tour.images[1])}
               alt="Tour pic 1"
               fill
               className="object-cover"
               sizes="150px"
+              unoptimized
             />
           </div>
           <div className="w-32 h-32 rounded-full overflow-hidden relative shadow-lg z-10 -ml-12 border-4 border-white">
             <Image
-              src={`/img/tours/${tour.images[2]}`}
+              src={getTourImageUrl(tour.images[2])}
               alt="Tour pic 2"
               fill
               className="object-cover"
               sizes="150px"
+              unoptimized
             />
           </div>
         </div>

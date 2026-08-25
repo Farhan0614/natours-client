@@ -1,4 +1,5 @@
 // src/app/_components/tours/ReviewCard.js
+import { getUserImageUrl } from "@/app/_util/getBackendImages";
 import Image from "next/image";
 
 export default function ReviewCard({ review }) {
@@ -6,11 +7,12 @@ export default function ReviewCard({ review }) {
     <div className="bg-slate-50 rounded-2xl shadow-md p-10 flex flex-col items-center text-center gap-6 min-w-75 w-80 snap-center transition-transform hover:-translate-y-2">
       <div className="flex items-center gap-4">
         <Image
-          src={`/img/users/${review.user.photo}`}
+          src={getUserImageUrl(review.user.photo)}
           alt={review.user.name}
           width={45}
           height={45}
           className="rounded-full"
+          unoptimized
         />
         <h6 className="font-bold text-slate-700 uppercase tracking-wider text-sm">
           {review.user.name}

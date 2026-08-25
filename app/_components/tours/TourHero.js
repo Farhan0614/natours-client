@@ -1,4 +1,5 @@
 // src/app/_components/tours/TourHero.js
+import { getTourImageUrl } from "@/app/_util/getBackendImages";
 import Image from "next/image";
 
 export default function TourHero({ tour }) {
@@ -6,12 +7,13 @@ export default function TourHero({ tour }) {
     <section className="relative h-[85vh] flex items-center justify-center [clip-path:polygon(0_0,100%_0,100%_85%,0_100%)]">
       <div className="absolute inset-0 bg-linear-to-br from-emerald-400 to-emerald-600 opacity-70 z-10 mix-blend-multiply"></div>
       <Image
-        src={`/img/tours/${tour.imageCover}`}
+        src={getTourImageUrl(tour.imageCover)}
         alt={tour.name}
         fill
         className="object-cover z-0"
         priority
         sizes="100vw"
+        unoptimized
       />
       <div className="z-20 text-center text-white flex flex-col items-center">
         <h1 className="text-5xl md:text-6xl font-light uppercase w-3/4 mb-8">
