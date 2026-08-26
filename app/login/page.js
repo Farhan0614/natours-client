@@ -1,3 +1,4 @@
+import AuthForm from "../_components/auth/AuthForm";
 import LoginForm from "../_components/auth/LoginForm";
 
 export const metadata = {
@@ -12,7 +13,7 @@ export default function LoginPage() {
           Log into your account
         </h2>
 
-        <LoginForm />
+        <AuthForm mode="login" />
       </div>
     </main>
   );

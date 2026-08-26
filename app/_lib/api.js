@@ -29,3 +29,27 @@ export const updateSettings = async (data, type, isFormData = false) => {
 
   return result; // Return success so the component knows it worked
 };
+
+export const authenticate = async (payload, mode) => {
+  const endpoint = mode === "signup" ? "/users/signup" : "/users/login";
+  const url = `${process.env.NEXT_PUBLIC_API_URL}${endpoint}`;
+
+  const res = await fetch(url, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    credentials: "include", // CRITICAL: Sets the JWT cookie
+    body: JSON.stringify(payload),
+  });
+
+  const data = await res.json();
+
+  if (!res.ok) {
+    throw new Error(
+      data.message || `Failed to ${mode === "signup" ? "sign up" : "log in"}`,
+    );
+  }
+
+  return data;
+};
