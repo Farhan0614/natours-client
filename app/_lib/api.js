@@ -53,3 +53,21 @@ export const authenticate = async (payload, mode) => {
 
   return data;
 };
+
+export const getCheckoutSession = async (tourId) => {
+  const url = `${process.env.NEXT_PUBLIC_API_URL}/booking/checkout-session/${tourId}`;
+
+  const res = await fetch(url, {
+    method: "GET",
+    credentials: "include", // CRITICAL: Sends the JWT cookie to Express
+  });
+
+  const data = await res.json();
+
+  if (!res.ok) {
+    throw new Error(data.message || "Could not create checkout session");
+  }
+
+  // Return the Stripe URL so the frontend can redirect to it
+  return data.session.url;
+};

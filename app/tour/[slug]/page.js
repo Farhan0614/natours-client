@@ -1,11 +1,11 @@
 // src/app/tour/[slug]/page.js
+import { cookies } from "next/headers"; // 1. Import cookies utility
 import { getTour } from "../../_lib/data";
 import TourHero from "../../_components/tours/TourHero";
 import TourDescription from "../../_components/tours/TourDescription";
 import TourPictures from "../../_components/tours/TourPictures";
 import TourCTA from "../../_components/tours/TourCTA";
 import ReviewCard from "../../_components/tours/ReviewCard";
-
 import TourMap from "../../_components/tours/TourMap";
 
 export async function generateMetadata({ params }) {
@@ -22,6 +22,10 @@ export async function generateMetadata({ params }) {
 export default async function TourDetailPage({ params }) {
   const { slug } = await params;
   const tour = await getTour(slug);
+
+  // 2. Check if the user is logged in by looking for the JWT cookie
+  const cookieStore = await cookies();
+  const isLoggedIn = cookieStore.has("jwt");
 
   const date = new Date(tour.startDates[0]).toLocaleString("en-us", {
     month: "long",
@@ -50,7 +54,8 @@ export default async function TourDetailPage({ params }) {
         </div>
       </section>
 
-      <TourCTA tour={tour} />
+      {/* 3. Pass the isLoggedIn boolean down to the CTA! */}
+      <TourCTA tour={tour} isLoggedIn={isLoggedIn} />
     </main>
   );
 }

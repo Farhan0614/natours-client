@@ -1,8 +1,10 @@
 // src/app/_components/tours/TourCTA.js
 import { getTourImageUrl } from "@/app/_util/getBackendImages";
 import Image from "next/image";
+import BookTourButton from "./BookTourButton";
 
-export default function TourCTA({ tour }) {
+// Assuming you pass down a boolean `isLoggedIn` from the parent page
+export default function TourCTA({ tour, isLoggedIn }) {
   return (
     <section className="bg-slate-100 pt-32 pb-24 flex justify-center -mt-24 relative z-0">
       <div className="bg-white rounded-2xl shadow-xl max-w-5xl w-full mx-6 p-12 lg:p-20 flex flex-col md:flex-row items-center justify-between gap-12 relative overflow-hidden">
@@ -28,17 +30,18 @@ export default function TourCTA({ tour }) {
             />
           </div>
         </div>
+
         <div className="flex-1 text-center md:text-left z-10 relative">
           <h2 className="text-3xl font-bold uppercase text-emerald-500 mb-4 bg-clip-text text-transparent bg-gradient-to-r from-emerald-400 to-emerald-600">
             What are you waiting for?
           </h2>
-          <p className="text-slate-600 text-lg mb-8 font-semibold">
+          <p className="text-slate-700 text-lg mb-8 font-semibold">
             {tour.duration} days. 1 adventure. Infinite memories. Make it yours
             today!
           </p>
-          <button className="bg-emerald-500 text-white uppercase px-8 py-4 rounded-full font-semibold tracking-wider hover:bg-emerald-600 hover:-translate-y-1 transition-all shadow-md hover:shadow-lg w-full md:w-auto">
-            Book tour now!
-          </button>
+
+          {/* Drop in our new Interactive Client Component! */}
+          <BookTourButton tourId={tour.id} isLoggedIn={isLoggedIn} />
         </div>
       </div>
     </section>
