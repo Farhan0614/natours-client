@@ -38,7 +38,7 @@ export default function BookTourButton({ tourId, isLoggedIn }) {
     <button
       onClick={handleBooking}
       disabled={isLoading}
-      className="bg-emerald-500 text-white uppercase px-8 py-4 rounded-full font-semibold tracking-wider hover:bg-emerald-600 hover:-translate-y-1 transition-all shadow-md hover:shadow-lg w-full md:w-auto disabled:opacity-70 disabled:hover:translate-y-0"
+      className="bg-emerald-500 text-white cursor-pointer uppercase px-8 py-4 rounded-full font-semibold tracking-wider hover:bg-emerald-600 hover:-translate-y-1 transition-all shadow-md hover:shadow-lg w-full md:w-auto disabled:opacity-70 disabled:hover:translate-y-0"
     >
       {isLoading
         ? "Processing..."

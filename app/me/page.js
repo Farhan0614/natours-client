@@ -45,7 +45,7 @@ export default async function ProfilePage() {
             <ul className="flex flex-col">
               <NavItem link="#" text="Settings" icon="settings" active={true} />
               <NavItem
-                link="#"
+                link="/me/my-bookings"
                 text="My bookings"
                 icon="briefcase"
                 active={false}

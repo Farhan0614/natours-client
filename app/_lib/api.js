@@ -71,3 +71,41 @@ export const getCheckoutSession = async (tourId) => {
   // Return the Stripe URL so the frontend can redirect to it
   return data.session.url;
 };
+
+export const createBookingCheckout = async (bookingData, cookieString) => {
+  const url = `${process.env.NEXT_PUBLIC_API_URL}/booking`;
+
+  const res = await fetch(url, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      // Manually attach the cookie for Server-to-Server requests!
+      Cookie: cookieString || "",
+    },
+    body: JSON.stringify(bookingData),
+  });
+
+  if (!res.ok) {
+    throw new Error("Could not create booking");
+  }
+};
+
+export const getMyBookings = async (cookieString) => {
+  const url = `${process.env.NEXT_PUBLIC_API_URL}/booking/my-bookings`;
+
+  const res = await fetch(url, {
+    method: "GET",
+    headers: {
+      Cookie: cookieString || "",
+    },
+  });
+
+  const data = await res.json();
+
+  if (!res.ok) {
+    throw new Error(data.message || "Failed to fetch bookings");
+  }
+
+  // Return the array of tours
+  return data.data.data;
+};
