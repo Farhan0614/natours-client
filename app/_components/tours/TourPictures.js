@@ -1,5 +1,5 @@
 // src/app/_components/tours/TourPictures.js
-import { getTourImageUrl } from "@/app/_util/getBackendImages";
+import { getTourImageUrl, BLUR_DATA_URL } from "@/app/_util/getBackendImages";
 import Image from "next/image";
 
 export default function TourPictures({ images, tourName }) {
@@ -14,7 +14,8 @@ export default function TourPictures({ images, tourName }) {
             className="object-cover"
             sizes="(max-width: 768px) 100vw, 33vw"
             priority={i === 0}
-            unoptimized
+            placeholder="blur"
+            blurDataURL={BLUR_DATA_URL}
           />
         </div>
       ))}

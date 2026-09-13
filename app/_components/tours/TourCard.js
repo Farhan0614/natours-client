@@ -1,4 +1,4 @@
-import { getTourImageUrl } from "@/app/_util/getBackendImages";
+import { getTourImageUrl, BLUR_DATA_URL } from "@/app/_util/getBackendImages";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -17,7 +17,8 @@ export default function TourCard({ tour }) {
             style={{ objectFit: "cover" }}
             className="z-0"
             sizes="(max-width: 768px) 100vw, 33vw"
-            unoptimized
+            placeholder="blur"
+            blurDataURL={BLUR_DATA_URL}
           />
         </div>
 

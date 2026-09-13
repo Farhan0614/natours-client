@@ -1,5 +1,4 @@
-// src/app/_components/tours/TourHero.js
-import { getTourImageUrl } from "@/app/_util/getBackendImages";
+import { getTourImageUrl, BLUR_DATA_URL } from "@/app/_util/getBackendImages";
 import Image from "next/image";
 
 export default function TourHero({ tour }) {
@@ -13,7 +12,8 @@ export default function TourHero({ tour }) {
         className="object-cover z-0"
         priority
         sizes="100vw"
-        unoptimized
+        placeholder="blur"
+        blurDataURL={BLUR_DATA_URL}
       />
       <div className="z-20 text-center text-white flex flex-col items-center">
         <h1 className="text-5xl md:text-6xl font-light uppercase w-3/4 mb-8">

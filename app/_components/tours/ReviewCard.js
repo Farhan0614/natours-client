@@ -1,5 +1,5 @@
 // src/app/_components/tours/ReviewCard.js
-import { getUserImageUrl } from "@/app/_util/getBackendImages";
+import { getUserImageUrl, BLUR_DATA_URL } from "@/app/_util/getBackendImages";
 import Image from "next/image";
 
 export default function ReviewCard({ review }) {
@@ -12,7 +12,8 @@ export default function ReviewCard({ review }) {
           width={45}
           height={45}
           className="rounded-full"
-          unoptimized
+          placeholder="blur"
+          blurDataURL={BLUR_DATA_URL}
         />
         <h6 className="font-bold text-slate-700 uppercase tracking-wider text-sm">
           {review.user.name}

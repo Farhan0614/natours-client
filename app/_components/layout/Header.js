@@ -2,7 +2,7 @@ import { getMe } from "@/app/_lib/data";
 import Image from "next/image";
 import Link from "next/link";
 import LogoutButton from "../auth/LogoutButton";
-import { getUserImageUrl } from "@/app/_util/getBackendImages";
+import { getUserImageUrl, BLUR_DATA_URL } from "@/app/_util/getBackendImages";
 
 export default async function Header() {
   // TEMPORARY: Set to null to simulate logged out, or an object to simulate logged in.
@@ -52,7 +52,8 @@ export default async function Header() {
                 className="rounded-full object-cover border-2 border-slate-600 h-[35px] w-[35px]"
                 width={35}
                 height={35}
-                unoptimized // <-- Don't forget to add this here too!
+                placeholder="blur"
+                blurDataURL={BLUR_DATA_URL}
               />
               {/* Added fallback to prevent crash if name is missing */}
               <span>{user.name ? user.name.split(" ")[0] : "User"}</span>

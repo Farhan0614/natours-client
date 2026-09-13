@@ -1,5 +1,4 @@
-// src/app/_components/tours/TourDescription.js
-import { getUserImageUrl } from "@/app/_util/getBackendImages";
+import { getUserImageUrl, BLUR_DATA_URL } from "@/app/_util/getBackendImages";
 import Image from "next/image";
 
 export default function TourDescription({ tour, date }) {
@@ -59,7 +58,8 @@ export default function TourDescription({ tour, date }) {
                     width={40}
                     height={40}
                     className="rounded-full"
-                    unoptimized
+                    placeholder="blur"
+                    blurDataURL={BLUR_DATA_URL}
                   />
                   <span className="font-bold uppercase w-32">
                     {guide.role === "lead-guide" ? "Lead guide" : "Tour guide"}

@@ -1,5 +1,4 @@
-// src/app/_components/tours/TourCTA.js
-import { getTourImageUrl } from "@/app/_util/getBackendImages";
+import { getTourImageUrl, BLUR_DATA_URL } from "@/app/_util/getBackendImages";
 import Image from "next/image";
 import BookTourButton from "./BookTourButton";
 
@@ -16,7 +15,8 @@ export default function TourCTA({ tour, isLoggedIn }) {
               fill
               className="object-cover"
               sizes="150px"
-              unoptimized
+              placeholder="blur"
+              blurDataURL={BLUR_DATA_URL}
             />
           </div>
           <div className="w-32 h-32 rounded-full overflow-hidden relative shadow-lg z-10 -ml-12 border-4 border-white">
@@ -26,7 +26,8 @@ export default function TourCTA({ tour, isLoggedIn }) {
               fill
               className="object-cover"
               sizes="150px"
-              unoptimized
+              placeholder="blur"
+              blurDataURL={BLUR_DATA_URL}
             />
           </div>
         </div>

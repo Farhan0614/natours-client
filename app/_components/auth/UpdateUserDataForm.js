@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { updateSettings } from "@/app/_lib/api";
-import { getUserImageUrl } from "@/app/_util/getBackendImages";
+import { getUserImageUrl, BLUR_DATA_URL } from "@/app/_util/getBackendImages";
 
 export default function UpdateUserDataForm({ user }) {
   const router = useRouter();
@@ -112,7 +112,8 @@ export default function UpdateUserDataForm({ user }) {
           width={75}
           height={75}
           className="rounded-full h-[75px] w-[75px] object-cover border-2 border-slate-200"
-          unoptimized // Required for Next.js to load external Express images easily during dev
+          placeholder="blur"
+          blurDataURL={BLUR_DATA_URL}
         />
 
         {/* Hidden file input */}
