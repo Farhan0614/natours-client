@@ -7,6 +7,8 @@ import TourPictures from "../../_components/tours/TourPictures";
 import TourCTA from "../../_components/tours/TourCTA";
 import ReviewCard from "../../_components/tours/ReviewCard";
 import TourMap from "../../_components/tours/TourMap";
+import { getMyBookings } from "@/app/_lib/api";
+import AddReviewForm from "@/app/_components/tours/AddReviewForm";
 
 export async function generateMetadata({ params }) {
   const { slug } = await params;
@@ -25,7 +27,22 @@ export default async function TourDetailPage({ params }) {
 
   // 2. Check if the user is logged in by looking for the JWT cookie
   const cookieStore = await cookies();
-  const isLoggedIn = cookieStore.has("jwt");
+  const jwt = cookieStore.get("jwt")?.value;
+  const isLoggedIn = !!jwt;
+
+  let hasBooked = false;
+
+  // If logged in, fetch their bookings to see if they bought THIS tour
+  if (isLoggedIn) {
+    try {
+      const bookedTours = await getMyBookings(`jwt=${jwt}`);
+      // Check if the current tour's ID exists in their list of booked tours
+      hasBooked = bookedTours.some((bookedTour) => bookedTour.id === tour.id);
+    } catch (err) {
+      // Fail silently if there's an error fetching bookings (e.g. token expired)
+      console.error("Could not fetch bookings to verify review eligibility.");
+    }
+  }
 
   const date = new Date(tour.startDates[0]).toLocaleString("en-us", {
     month: "long",
@@ -46,12 +63,20 @@ export default async function TourDetailPage({ params }) {
       </section>
 
       {/* REVIEWS SECTION */}
-      <section className="bg-linear-to-br from-emerald-300 to-emerald-700 py-48 relative [clip-path:polygon(0_9vw,100%_0,100%_calc(100%-9vw),0_100%)] mt-[-9vw] z-10 flex overflow-hidden">
-        <div className="flex gap-10 overflow-x-auto snap-x snap-mandatory px-8 md:px-20 py-8 no-scrollbar w-full">
+      <section className="bg-linear-to-br from-emerald-300 to-emerald-700 py-48 relative [clip-path:polygon(0_9vw,100%_0,100%_calc(100%-9vw),0_100%)] mt-[-9vw] z-10 flex flex-col items-center">
+        {/* The horizontal scrolling review cards */}
+        <div className="flex gap-10 overflow-x-auto snap-x snap-mandatory px-8 md:px-20 py-8 no-scrollbar w-full mb-12">
           {tour.reviews.map((review) => (
             <ReviewCard key={review._id} review={review} />
           ))}
         </div>
+
+        {/* CONDITIONALLY RENDER THE FORM! */}
+        {hasBooked && (
+          <div className="w-full px-6 flex justify-center">
+            <AddReviewForm tourId={tour.id} />
+          </div>
+        )}
       </section>
 
       {/* 3. Pass the isLoggedIn boolean down to the CTA! */}

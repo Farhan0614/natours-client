@@ -109,3 +109,24 @@ export const getMyBookings = async (cookieString) => {
   // Return the array of tours
   return data.data.data;
 };
+
+export const createReview = async (tourId, reviewData) => {
+  const url = `${process.env.NEXT_PUBLIC_API_URL}/tours/${tourId}/reviews`;
+
+  const res = await fetch(url, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    credentials: "include", // Let the browser send the JWT cookie
+    body: JSON.stringify(reviewData),
+  });
+
+  const data = await res.json();
+
+  if (!res.ok) {
+    throw new Error(data.message || "Failed to submit review");
+  }
+
+  return data;
+};

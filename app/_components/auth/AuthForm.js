@@ -5,6 +5,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { authenticate } from "../../_lib/api"; // 1. Import our new clean API function
+import { setAuthCookie } from "@/app/_lib/actions";
 
 export default function AuthForm({ mode = "login" }) {
   const isSignup = mode === "signup";
@@ -31,8 +32,13 @@ export default function AuthForm({ mode = "login" }) {
       : { email, password };
 
     try {
-      // 3. Call the external API function! Look how clean this is.
-      await authenticate(payload, mode);
+      // Capture the returned data from your API
+      const data = await authenticate(payload, mode);
+
+      // If a token exists, explicitly save it to Vercel's cookies
+      if (data.token) {
+        await setAuthCookie(data.token);
+      }
 
       // Success! Redirect to home and refresh the server components
       router.push("/");

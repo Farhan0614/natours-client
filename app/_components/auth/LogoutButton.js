@@ -1,6 +1,7 @@
 // src/app/_components/auth/LogoutButton.js
 "use client"; // <--- ADD THIS LINE!
 
+import { removeAuthCookie } from "@/app/_lib/actions";
 import { useRouter } from "next/navigation";
 
 export default function LogoutButton() {
@@ -20,6 +21,7 @@ export default function LogoutButton() {
 
       // If successful, refresh the Next.js router
       if (data.status === "success") {
+        await removeAuthCookie();
         router.push("/"); // Send them to the home page
         router.refresh(); // This forces the Header (Server Component) to re-run
       }
