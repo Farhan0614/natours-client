@@ -50,23 +50,28 @@ export default function TourDescription({ tour, date }) {
               Your tour guides
             </h2>
             <div className="flex flex-col gap-6 text-slate-700 text-sm">
-              {tour.guides.map((guide) => (
-                <div key={guide._id} className="flex items-center gap-4">
-                  <Image
-                    src={getUserImageUrl(guide.photo)}
-                    alt={guide.name}
-                    width={40}
-                    height={40}
-                    className="rounded-full"
-                    placeholder="blur"
-                    blurDataURL={BLUR_DATA_URL}
-                  />
-                  <span className="font-bold uppercase w-32">
-                    {guide.role === "lead-guide" ? "Lead guide" : "Tour guide"}
-                  </span>
-                  <span>{guide.name}</span>
-                </div>
-              ))}
+              {tour.guides.map((guide) => {
+                if (!guide) return null;
+                return (
+                  <div key={guide._id} className="flex items-center gap-4">
+                    <Image
+                      src={getUserImageUrl(guide.photo)}
+                      alt={guide.name}
+                      width={40}
+                      height={40}
+                      className="rounded-full"
+                      placeholder="blur"
+                      blurDataURL={BLUR_DATA_URL}
+                    />
+                    <span className="font-bold uppercase w-32">
+                      {guide.role === "lead-guide"
+                        ? "Lead guide"
+                        : "Tour guide"}
+                    </span>
+                    <span>{guide.name}</span>
+                  </div>
+                );
+              })}
             </div>
           </div>
         </div>

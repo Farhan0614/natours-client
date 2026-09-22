@@ -3,6 +3,7 @@ import { getUserImageUrl, BLUR_DATA_URL } from "@/app/_util/getBackendImages";
 import Image from "next/image";
 
 export default function ReviewCard({ review }) {
+  if (!review.user) return null;
   return (
     <div className="bg-slate-50 rounded-2xl shadow-md p-10 flex flex-col items-center text-center gap-6 min-w-75 w-80 snap-center transition-transform hover:-translate-y-2">
       <div className="flex items-center gap-4">
